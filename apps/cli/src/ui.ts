@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import readline from "node:readline";
+import * as readline from "node:readline";
 
 export const log = console.log;
 

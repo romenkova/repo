@@ -1,6 +1,7 @@
 import type { CommandModule } from "yargs";
 import { extractTicket, getBranchName } from "../git.js";
 import { prompt, ui } from "../ui.js";
+import { execSync } from "node:child_process";
 
 const commitCommand: CommandModule = {
   command: "commit",
@@ -35,8 +36,7 @@ const commitCommand: CommandModule = {
     ui.result("commit", `"${commitMessage}"`);
 
     try {
-      console.log(`git commit -m "${commitMessage}"`);
-      // execSync(`git commit -m "${commitMessage}"`, { stdio: "inherit" });
+      execSync(`git commit -m "${commitMessage}"`, { stdio: "inherit" });
     } catch {
       ui.fail("Git commit failed.");
       process.exit(1);

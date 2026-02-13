@@ -33,6 +33,9 @@ importers:
       '@ri/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@ri/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       '@types/yargs':
         specifier: ^17.0.35
         version: 17.0.35

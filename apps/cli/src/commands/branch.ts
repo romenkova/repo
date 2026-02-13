@@ -1,6 +1,7 @@
 import type { ArgumentsCamelCase, CommandModule } from "yargs";
 import { slugify } from "../git.js";
 import { prompt, ui } from "../ui.js";
+import { execSync } from "node:child_process";
 
 interface BranchArgs {
   name: string;
@@ -43,8 +44,7 @@ const branchCommand: CommandModule<object, BranchArgs> = {
     ui.result("branch", branchName);
 
     try {
-      console.log(`git checkout -b ${branchName}`);
-      // execSync(`git checkout -b ${branchName}`, { stdio: "inherit" });
+      execSync(`git checkout -b ${branchName}`, { stdio: "inherit" });
     } catch {
       ui.fail("Failed to create branch.");
       process.exit(1);
