@@ -30,10 +30,13 @@ const rebaseCommand: CommandModule = {
       })),
     });
 
-    ui.result("rebase", `git rebase -i HEAD~${index}`);
+    const isRoot = index === commits.length;
+    const rebaseArg = isRoot ? "--root" : `HEAD~${index}`;
+
+    ui.result("rebase", `git rebase -i ${rebaseArg}`);
 
     try {
-      execSync(`git rebase -i HEAD~${index}`, { stdio: "inherit" });
+      execSync(`git rebase -i ${rebaseArg}`, { stdio: "inherit" });
     } catch {
       ui.fail("Rebase failed or was aborted.");
       process.exit(1);
